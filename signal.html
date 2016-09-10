@@ -1,0 +1,55 @@
+<html>
+    <style>
+        div{
+            background-color: red;
+            height: 300;
+            width: 300;
+        }
+        </style>
+    
+    <script>
+        var divTag;
+        var timerStared = false;
+        
+        function startSignal(){
+            if(timerStared === false){
+                setInterval(updateTimer , 1000);
+            }
+            divTag = document.getElementById('signal');
+            divTag.style.backgroundColor = 'red';
+            
+            setTimeout(changeToGreen , 30000);
+            timerStared = true;
+        }
+        
+        function changeToGreen(){
+            divTag.style.backgroundColor = 'green';
+            setTimeout(function(){
+                divTag.style.backgroundColor = 'yellow';
+                setTimeout(startSignal,5000);
+            },25000);
+        }
+        
+        function updateTimer(){
+            var pTag = document.getElementById('timer');
+            var val = parseInt(pTag.innerHTML);
+            if(val === 1){
+                val = 30;
+            }else{
+                val--;
+            }
+            pTag.innerHTML = val;
+        }
+    </script>
+
+    <body onload="startSignal()">
+        <div id="signal">
+            <p id='timer' align='center' style="font-size:200px">30</p>
+        </div>
+    
+    
+    </body>
+    
+    
+
+</html>
